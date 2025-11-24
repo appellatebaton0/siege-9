@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://cqw4kq2kcvxmh"]
+
+[ext_resource type="Script" uid="uid://tm1u65q3c0r0" path="res://scripts/camera.gd" id="1_o5qli"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0wfyh"]
+size = Vector2(576, 324)
+
+[sub_resource type="Gradient" id="Gradient_sugp2"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jyhfs"]
+gradient = SubResource("Gradient_sugp2")
+width = 16
+height = 16
+
+[node name="Main" type="Node"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+script = ExtResource("1_o5qli")
+
+[node name="Area2D" type="Area2D" parent="Camera2D"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/Area2D"]
+shape = SubResource("RectangleShape2D_0wfyh")
+debug_color = Color(0.9835351, 0, 0.34771505, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_jyhfs")
+
+[connection signal="input_event" from="Camera2D/Area2D" to="Camera2D" method="_input_event"]
