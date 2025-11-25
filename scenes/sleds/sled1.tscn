@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://bm7u6difpdtrl"]
+
+[ext_resource type="Script" uid="uid://qftssbeyk3rq" path="res://scripts/sled.gd" id="1_4b3sv"]
+
+[sub_resource type="Gradient" id="Gradient_uvep4"]
+offsets = PackedFloat32Array(0, 0.72)
+colors = PackedColorArray(7.70092e-06, 0.9661593, 0.7985467, 1, 0.18846989, 0.07625737, 0.0021327457, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4b3sv"]
+gradient = SubResource("Gradient_uvep4")
+width = 24
+height = 32
+fill_to = Vector2(0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1i3sy"]
+size = Vector2(24, 32)
+
+[node name="Sled" type="CharacterBody2D"]
+collision_mask = 0
+script = ExtResource("1_4b3sv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_4b3sv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1i3sy")
