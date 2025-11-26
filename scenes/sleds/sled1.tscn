@@ -15,7 +15,8 @@ fill_to = Vector2(0, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1i3sy"]
 size = Vector2(24, 32)
 
-[node name="Sled" type="CharacterBody2D"]
+[node name="Sled" type="CharacterBody2D" groups=["Sleds"]]
+collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_4b3sv")
 
@@ -23,4 +24,11 @@ script = ExtResource("1_4b3sv")
 texture = SubResource("GradientTexture2D_4b3sv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1i3sy")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_1i3sy")
