@@ -61,11 +61,7 @@ func spawn_new():
 			var dist = sled.global_position.distance_to(set_pos)
 			min_dist = min(min_dist, dist)
 		
-		print(min_dist)
-		
-		if min_dist > 31:
-			print("br")
-			break
+		if min_dist > 31: break
 	
 	add_child(new)
 	new.global_position = get_random_row_position()
@@ -74,5 +70,6 @@ func _process(delta: float) -> void:
 	time = move_toward(time, 0, delta)
 	if time <= 0:
 		time = interval
-		for i in range([1,1,1,1,2,2,3,1,1,2,2,3,floor(rows /2)].pick_random()):
+		for i in range([1,1,1,1,2,2,3,1,1,2,2,3,floor(rows /2.0)].pick_random()):
 			spawn_new()
+	

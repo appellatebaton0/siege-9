@@ -1,6 +1,6 @@
 class_name Sled extends CharacterBody2D
 
-@onready var speed = randf_range(100, 115)
+@onready var speed = 90
 
 func _physics_process(delta: float) -> void:
 	
