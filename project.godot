@@ -24,6 +24,7 @@ enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
 Camera=""
 Sleds=""
 Player=""
+Animator=""
 
 [input]
 
