@@ -7,6 +7,7 @@ signal died
 
 @export var max_health := 3
 @onready var health = max_health
+var knockback:Vector2
 
 func reset() -> void: health = max_health
 func damage(amnt := 1):
@@ -26,5 +27,8 @@ func _physics_process(delta: float) -> void:
 	
 	velocity.x = move_toward(velocity.x, max_speed * direction.x, acceleration * delta)
 	velocity.y = move_toward(velocity.y, max_speed * direction.y, acceleration * delta)
+	
+	velocity += knockback
+	knockback /= 1.2
 	
 	move_and_slide()

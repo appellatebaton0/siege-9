@@ -14,6 +14,7 @@ func _on_body_entered(body: Node2D) -> void:
 	# KYS.
 	if body == player:
 		player.damage()
+		player.knockback = global_position.direction_to(player.global_position) * 35
 	
 	speed = 0
 	
