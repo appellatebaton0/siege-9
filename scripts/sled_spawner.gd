@@ -1,5 +1,7 @@
 class_name SledSpawner extends Node
 
+@export var active := false
+
 @export var rows := 6
 
 @export var interval := 0.1
@@ -67,9 +69,11 @@ func spawn_new():
 	new.global_position = get_random_row_position()
 
 func _process(delta: float) -> void:
-	time = move_toward(time, 0, delta)
-	if time <= 0:
-		time = interval
-		for i in range([1,1,1,1,2,2,3,1,1,2,2,3,floor(rows /2.0)].pick_random()):
-			spawn_new()
+	if active:
+		time = move_toward(time, 0, delta)
+		if time <= 0:
+			time = interval
+			for i in range([1,1,1,1,2,2,3,1,1,2,2,3,floor(rows /2.0)].pick_random()):
+				spawn_new()
+	else: time = interval
 	

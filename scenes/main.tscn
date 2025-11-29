@@ -212,18 +212,6 @@ tracks/1/keys = {
 "update": 1,
 "values": [true, false]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../SledSpawner:active")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.5),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o6xl0"]
 _data = {
@@ -294,6 +282,13 @@ shape = SubResource("RectangleShape2D_jyhfs")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="Down" type="AudioStreamPlayer" parent="CanvasLayer"]
+
+[node name="Up" type="AudioStreamPlayer" parent="CanvasLayer"]
+
+[node name="Reset" type="Node" parent="CanvasLayer"]
+script = ExtResource("6_tefeu")
+
 [node name="Control" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 15
@@ -330,10 +325,6 @@ layout_mode = 2
 script = ExtResource("5_tbgi4")
 anim_name = "start"
 
-[node name="Down" type="AudioStreamPlayer" parent="CanvasLayer/Control/StartScreen/MarginContainer/Start"]
-
-[node name="Up" type="AudioStreamPlayer" parent="CanvasLayer/Control/StartScreen/MarginContainer/Start"]
-
 [node name="LoseScreen" type="Panel" parent="CanvasLayer/Control"]
 visible = false
 material = SubResource("ShaderMaterial_tefeu")
@@ -357,18 +348,11 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="Start" type="Button" parent="CanvasLayer/Control/LoseScreen/MarginContainer"]
+[node name="Retry" type="Button" parent="CanvasLayer/Control/LoseScreen/MarginContainer"]
 use_parent_material = true
 layout_mode = 2
 script = ExtResource("5_tbgi4")
 anim_name = "retry"
-
-[node name="Down" type="AudioStreamPlayer" parent="CanvasLayer/Control/LoseScreen/MarginContainer/Start"]
-
-[node name="Up" type="AudioStreamPlayer" parent="CanvasLayer/Control/LoseScreen/MarginContainer/Start"]
-
-[node name="Reset" type="Node" parent="CanvasLayer/Control/LoseScreen/MarginContainer/Start"]
-script = ExtResource("6_tefeu")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer" groups=["Animator"]]
 libraries = {
@@ -376,10 +360,11 @@ libraries = {
 }
 
 [connection signal="died" from="Player" to="Player/END" method="animate"]
-[connection signal="button_down" from="CanvasLayer/Control/StartScreen/MarginContainer/Start" to="CanvasLayer/Control/StartScreen/MarginContainer/Start/Down" method="play"]
-[connection signal="button_up" from="CanvasLayer/Control/StartScreen/MarginContainer/Start" to="CanvasLayer/Control/StartScreen/MarginContainer/Start/Up" method="play"]
+[connection signal="button_down" from="CanvasLayer/Control/StartScreen/MarginContainer/Start" to="CanvasLayer/Down" method="play"]
+[connection signal="button_up" from="CanvasLayer/Control/StartScreen/MarginContainer/Start" to="CanvasLayer/Up" method="play"]
 [connection signal="pressed" from="CanvasLayer/Control/StartScreen/MarginContainer/Start" to="CanvasLayer/Control/StartScreen/MarginContainer/Start" method="animate"]
-[connection signal="button_down" from="CanvasLayer/Control/LoseScreen/MarginContainer/Start" to="CanvasLayer/Control/LoseScreen/MarginContainer/Start/Down" method="play"]
-[connection signal="button_up" from="CanvasLayer/Control/LoseScreen/MarginContainer/Start" to="CanvasLayer/Control/LoseScreen/MarginContainer/Start/Up" method="play"]
-[connection signal="pressed" from="CanvasLayer/Control/LoseScreen/MarginContainer/Start" to="CanvasLayer/Control/LoseScreen/MarginContainer/Start" method="animate"]
-[connection signal="pressed" from="CanvasLayer/Control/LoseScreen/MarginContainer/Start" to="CanvasLayer/Control/LoseScreen/MarginContainer/Start/Reset" method="reset"]
+[connection signal="pressed" from="CanvasLayer/Control/StartScreen/MarginContainer/Start" to="CanvasLayer/Reset" method="reset"]
+[connection signal="button_down" from="CanvasLayer/Control/LoseScreen/MarginContainer/Retry" to="CanvasLayer/Down" method="play"]
+[connection signal="button_up" from="CanvasLayer/Control/LoseScreen/MarginContainer/Retry" to="CanvasLayer/Up" method="play"]
+[connection signal="pressed" from="CanvasLayer/Control/LoseScreen/MarginContainer/Retry" to="CanvasLayer/Control/LoseScreen/MarginContainer/Retry" method="animate"]
+[connection signal="pressed" from="CanvasLayer/Control/LoseScreen/MarginContainer/Retry" to="CanvasLayer/Reset" method="reset"]

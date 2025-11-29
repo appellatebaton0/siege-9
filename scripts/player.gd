@@ -2,6 +2,7 @@ class_name Player extends CharacterBody2D
 
 signal died
 
+
 @export var max_speed := 200.0
 @export var acceleration := 800.0
 
@@ -9,17 +10,15 @@ signal died
 @onready var health = max_health
 var knockback:Vector2
 
-func reset() -> void: health = max_health
+@onready var sp = global_position
+func reset() -> void: 
+	health = max_health
+	global_position = sp
 func damage(amnt := 1):
 	health -= amnt
 	
-	print("DAMAGE")
 	if health == 0: 
-		print("DIEDa")
 		died.emit()
-	
-	
-	
 
 func _physics_process(delta: float) -> void:
 	
