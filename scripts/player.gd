@@ -1,7 +1,24 @@
 class_name Player extends CharacterBody2D
 
+signal died
+
 @export var max_speed := 200.0
 @export var acceleration := 800.0
+
+@export var max_health := 3
+@onready var health = max_health
+
+func reset() -> void: health = max_health
+func damage(amnt := 1):
+	health -= amnt
+	
+	print("DAMAGE")
+	if health == 0: 
+		print("DIEDa")
+		died.emit()
+	
+	
+	
 
 func _physics_process(delta: float) -> void:
 	

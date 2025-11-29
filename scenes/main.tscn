@@ -40,7 +40,7 @@ script = ExtResource("2_sugp2")
 rows = 12
 interval = 0.6
 
-[node name="Player" type="CharacterBody2D" parent="."]
+[node name="Player" type="CharacterBody2D" parent="." groups=["Player"]]
 position = Vector2(218, 194)
 collision_layer = 4
 collision_mask = 11
@@ -83,3 +83,38 @@ collision_mask = 7
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Environment"]
 shape = SubResource("RectangleShape2D_jyhfs")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartScreen" type="Panel" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Start" type="Button" parent="CanvasLayer/Control/StartScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Down" type="AudioStreamPlayer" parent="CanvasLayer/Control/StartScreen/Start"]
+
+[node name="Up" type="AudioStreamPlayer" parent="CanvasLayer/Control/StartScreen/Start"]
+
+[node name="Player" type="AnimationPlayer" parent="CanvasLayer"]
+
+[connection signal="button_down" from="CanvasLayer/Control/StartScreen/Start" to="CanvasLayer/Control/StartScreen/Start/Down" method="play"]
+[connection signal="button_up" from="CanvasLayer/Control/StartScreen/Start" to="CanvasLayer/Control/StartScreen/Start/Up" method="play"]
