@@ -1,16 +1,17 @@
-[gd_scene load_steps=30 format=4 uid="uid://cqw4kq2kcvxmh"]
+[gd_scene load_steps=31 format=4 uid="uid://cqw4kq2kcvxmh"]
 
 [ext_resource type="Texture2D" uid="uid://dogvfnhihaueh" path="res://assets/textures/start_screen.png" id="1_jyhfs"]
 [ext_resource type="Texture2D" uid="uid://55v4ed8ceg3g" path="res://assets/textures/tileset.png" id="1_tefeu"]
 [ext_resource type="Script" uid="uid://vgqiqi0jmilg" path="res://scripts/sled_spawner.gd" id="2_sugp2"]
 [ext_resource type="Script" uid="uid://uaiplua24ldp" path="res://scripts/player.gd" id="3_sugp2"]
 [ext_resource type="Texture2D" uid="uid://dwk1qyv1iicod" path="res://assets/textures/player.png" id="4_jyhfs"]
-[ext_resource type="Script" path="res://scripts/animator.gd" id="5_tbgi4"]
+[ext_resource type="Script" uid="uid://b712jeklcdt5u" path="res://scripts/animator.gd" id="5_tbgi4"]
 [ext_resource type="Script" uid="uid://d35q5rd2biqno" path="res://scripts/reset.gd" id="6_tefeu"]
 [ext_resource type="Script" uid="uid://tm1u65q3c0r0" path="res://scripts/camera.gd" id="6_ya4ey"]
 [ext_resource type="Script" uid="uid://cepwk8rw6husm" path="res://scripts/healthbar.gd" id="7_choun"]
 [ext_resource type="Shader" uid="uid://be3xbtvi7kqcf" path="res://shaders/fade.gdshader" id="7_o6xl0"]
 [ext_resource type="Script" uid="uid://bu0n0myhiis72" path="res://scripts/scorekeeper.gd" id="9_85g3d"]
+[ext_resource type="AudioStream" uid="uid://bmcikdwos1she" path="res://assets/audio/music.ogg" id="12_eb6dy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jyhfs"]
 texture = ExtResource("1_tefeu")
@@ -165,6 +166,18 @@ tracks/4/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../AudioStreamPlayer:volume_db")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_o6xl0"]
 resource_name = "lose"
@@ -204,6 +217,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../AudioStreamPlayer:volume_db")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -10.0]
 }
 
 [sub_resource type="Animation" id="Animation_tbgi4"]
@@ -245,6 +270,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../AudioStreamPlayer:volume_db")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-10.0, 0.0]
+}
 
 [sub_resource type="Animation" id="Animation_tefeu"]
 resource_name = "start"
@@ -285,6 +322,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../AudioStreamPlayer:volume_db")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-30.0, 0.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o6xl0"]
 _data = {
@@ -322,7 +371,7 @@ shape = SubResource("CircleShape2D_85g3d")
 texture_filter = 1
 rotation = 1.5707964
 sprite_frames = SubResource("SpriteFrames_85g3d")
-frame_progress = 0.15809384
+frame_progress = 0.3921334
 
 [node name="END" type="Node" parent="Player"]
 script = ExtResource("5_tbgi4")
@@ -448,6 +497,7 @@ use_parent_material = true
 layout_mode = 2
 script = ExtResource("5_tbgi4")
 anim_name = "start"
+a = 4.05
 
 [node name="LoseScreen" type="TextureRect" parent="CanvasLayer/Control"]
 visible = false
@@ -516,6 +566,7 @@ theme_override_constants/margin_bottom = 50
 use_parent_material = true
 layout_mode = 2
 size_flags_vertical = 3
+text = "Again!"
 script = ExtResource("5_tbgi4")
 anim_name = "retry"
 
@@ -524,10 +575,15 @@ libraries = {
 &"": SubResource("AnimationLibrary_o6xl0")
 }
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_eb6dy")
+
 [connection signal="died" from="Player" to="Player/END" method="animate"]
 [connection signal="button_down" from="CanvasLayer/Control/StartScreen/MarginContainer/VBoxContainer/MarginContainer/Start" to="CanvasLayer/Down" method="play"]
 [connection signal="button_up" from="CanvasLayer/Control/StartScreen/MarginContainer/VBoxContainer/MarginContainer/Start" to="CanvasLayer/Up" method="play"]
+[connection signal="play" from="CanvasLayer/Control/StartScreen/MarginContainer/VBoxContainer/MarginContainer/Start" to="AudioStreamPlayer" method="play"]
 [connection signal="pressed" from="CanvasLayer/Control/StartScreen/MarginContainer/VBoxContainer/MarginContainer/Start" to="CanvasLayer/Reset" method="reset"]
+[connection signal="pressed" from="CanvasLayer/Control/StartScreen/MarginContainer/VBoxContainer/MarginContainer/Start" to="CanvasLayer/Control/StartScreen/MarginContainer/VBoxContainer/MarginContainer/Start" method="_play"]
 [connection signal="pressed" from="CanvasLayer/Control/StartScreen/MarginContainer/VBoxContainer/MarginContainer/Start" to="CanvasLayer/Control/StartScreen/MarginContainer/VBoxContainer/MarginContainer/Start" method="animate"]
 [connection signal="button_down" from="CanvasLayer/Control/LoseScreen/MarginContainer/VBoxContainer/MarginContainer/Retry" to="CanvasLayer/Down" method="play"]
 [connection signal="button_up" from="CanvasLayer/Control/LoseScreen/MarginContainer/VBoxContainer/MarginContainer/Retry" to="CanvasLayer/Up" method="play"]
