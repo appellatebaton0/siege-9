@@ -30,6 +30,8 @@ Sleds=""
 Player=""
 Animator=""
 SledSpawner=""
+Main=""
+Health=""
 
 [input]
 
@@ -64,3 +66,4 @@ Down={
 2d_physics/layer_2="Sled"
 2d_physics/layer_3="Player"
 2d_physics/layer_4="Playspace"
+2d_physics/layer_5="Health"

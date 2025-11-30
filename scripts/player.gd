@@ -21,6 +21,8 @@ func damage(amnt := 1):
 	
 	if health == 0: 
 		died.emit()
+func heal(amnt := 1):
+	health = min(max_health, health + amnt)
 
 func _physics_process(delta: float) -> void:
 	

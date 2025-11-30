@@ -1,6 +1,7 @@
 class_name Sled extends CharacterBody2D
 
 @onready var player:Player = get_tree().get_first_node_in_group("Player")
+@onready var main:Node = get_tree().get_first_node_in_group("Main")
 
 @onready var speed = 90
 
@@ -24,6 +25,18 @@ func _on_body_entered(body: Node2D) -> void:
 	# Should happen aft. the animation finishes later
 	#, though collision should turn off for that.
 
+var health_scene := load("res://scenes/health.tscn")
+func spawn_health():
+	var new:Area2D = health_scene.instantiate()
+	
+	main.add_child(new)
+	
+	new.global_position = global_position
+	
+
 
 func _on_anim_finish() -> void:
+	
+	if randf() > 0.9: spawn_health()
+	
 	queue_free()

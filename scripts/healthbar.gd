@@ -6,5 +6,5 @@ func _ready() -> void:
 	max_value = player.max_health
 
 func _process(_delta: float) -> void:
-	value = player.health
+	value = lerp(value, float(player.health), 0.9)
 	

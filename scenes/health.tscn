@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://3tvg472iunaq"]
+
+[ext_resource type="Script" uid="uid://d3dgsww8t3gn0" path="res://scripts/health.gd" id="1_2rad1"]
+[ext_resource type="Texture2D" uid="uid://b1d660qt58e3t" path="res://assets/textures/health.png" id="2_58c75"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_but5r"]
+radius = 6.0827627
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r330t"]
+atlas = ExtResource("2_58c75")
+region = Rect2(0, 0, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hcdjo"]
+atlas = ExtResource("2_58c75")
+region = Rect2(12, 0, 12, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p278q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r330t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hcdjo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[node name="Health" type="Area2D" groups=["Health"]]
+collision_layer = 16
+collision_mask = 4
+script = ExtResource("1_2rad1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_but5r")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_p278q")
+frame_progress = 0.8576902
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
