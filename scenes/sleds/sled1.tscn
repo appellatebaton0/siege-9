@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bm7u6difpdtrl"]
+[gd_scene load_steps=22 format=3 uid="uid://bm7u6difpdtrl"]
 
 [ext_resource type="Script" uid="uid://qftssbeyk3rq" path="res://scripts/sled.gd" id="1_4b3sv"]
 [ext_resource type="Texture2D" uid="uid://pd6iow4m03rc" path="res://assets/textures/sled.png" id="2_1i3sy"]
@@ -8,10 +8,6 @@
 [ext_resource type="AudioStream" uid="uid://d2mjwuf7it43m" path="res://assets/audio/crunch4.wav" id="6_wudxe"]
 [ext_resource type="AudioStream" uid="uid://b33ycfel5emw4" path="res://assets/audio/crunch5.wav" id="7_4pa46"]
 [ext_resource type="AudioStream" uid="uid://nkc61kgb18wo" path="res://assets/audio/crunch6.wav" id="8_u8nap"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1i3sy"]
-atlas = ExtResource("2_1i3sy")
-region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tww6r"]
 atlas = ExtResource("2_1i3sy")
@@ -52,13 +48,10 @@ region = Rect2(0, 0, 32, 32)
 [sub_resource type="SpriteFrames" id="SpriteFrames_4pa46"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1i3sy")
-}, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": SubResource("AtlasTexture_tww6r")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": SubResource("AtlasTexture_1pgsc")
 }, {
 "duration": 1.0,
@@ -118,6 +111,7 @@ script = ExtResource("1_4b3sv")
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_4pa46")
+animation = &"crash"
 autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

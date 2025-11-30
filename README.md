@@ -15,7 +15,9 @@ A game where you avoid sleighs that are zipping down a hill for as long as possi
 - [img of code]
 
 ## Credits
-- [Music / sfx credits]
+- Music is [Super Santa Claus by MintoDog](https://opengameart.org/content/super-santa-claus).
+- The sled breaking sound effects are from [this](https://freesound.org/people/utsuru/sounds/183450/) and [this](https://freesound.org/people/utsuru/sounds/183452/) by utsuru. 
+- Damage sound effect is [Fall to splat by jameswrowles](https://freesound.org/people/jameswrowles/sounds/248255/) with some pitch and speed changes.
 
 ---
 ## Devlogs
@@ -29,12 +31,13 @@ A game where you avoid sleighs that are zipping down a hill for as long as possi
 - Made the sleds stop moving once they run into the player or the bottom of the screen.
 ### Saturday -> Game Loop
 - Finally locked in, and got the entire game loop working;
-- The player can take damage and knockback.
-- There's a working start menu and replay menu, which use a simple threshold shader for the transition.
-- The sleds, spawner, and player are all reset when a new round starts.
+    - The player can take damage and knockback.
+    - There's a working start menu and replay menu, which use a simple threshold shader for the transition.
+    - The sleds, spawner, and player are all reset when a new round starts.
 ### Sunday -> Polish
 - Did all of the art and animation;
-- Player animation (penguin!)
-- Sled crashing animation for when they hit something
-- Background tileset
-- UI screens
+    - Player animation (penguin!)
+    - Sled crashing animation for when they hit something
+    - Background tileset
+    - UI Screens
+- Got music and sound effects working for damage, sleds dying, etc.

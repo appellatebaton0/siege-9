@@ -5,11 +5,16 @@ class_name Sled extends CharacterBody2D
 
 @onready var speed = 90
 
+@onready var s := $AudioStreamPlayer2D
+
 func _physics_process(delta: float) -> void:
 	
 	velocity.y = speed * 100.0 * delta
 	
 	move_and_slide()
+	
+	if player.health == 0 and s != null:
+		s.queue_free()
 
 func _on_body_entered(body: Node2D) -> void:
 	# KYS.
