@@ -73,7 +73,7 @@ func _process(delta: float) -> void:
 		time = move_toward(time, 0, delta)
 		if time <= 0:
 			time = interval
-			for i in range([1,1,1,1,2,2,3,1,1,2,2,3,floor(rows /2.0)].pick_random()):
+			for i in range([2,2,2,2,3,3,3,3,floor(rows /4.0),floor(rows /3.0),floor(rows /2.0)].pick_random()):
 				spawn_new()
 	else: time = interval
 	

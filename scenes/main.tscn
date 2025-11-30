@@ -358,7 +358,7 @@ interval = 0.6
 
 [node name="Player" type="CharacterBody2D" parent="." groups=["Player"]]
 z_index = 2
-position = Vector2(218, 194)
+position = Vector2(192, 158)
 collision_layer = 4
 collision_mask = 11
 motion_mode = 1
@@ -371,7 +371,7 @@ shape = SubResource("CircleShape2D_85g3d")
 texture_filter = 1
 rotation = 1.5707964
 sprite_frames = SubResource("SpriteFrames_85g3d")
-frame_progress = 0.3921334
+frame_progress = 0.23412812
 
 [node name="END" type="Node" parent="Player"]
 script = ExtResource("5_tbgi4")
