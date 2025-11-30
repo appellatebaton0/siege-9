@@ -29,8 +29,11 @@ func _on_body_entered(_body: Node2D) -> void:
 	player.heal()
 	end()
 
+var e = false
 func end(): 
+	if e: return
 	if cs: cs.queue_free()
 	
 	$AnimatedSprite2D.visible = false
 	$GPUParticles2D.emitting = true
+	e = true

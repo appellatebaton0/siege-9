@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://cqw4kq2kcvxmh"]
+[gd_scene load_steps=48 format=4 uid="uid://cqw4kq2kcvxmh"]
 
 [ext_resource type="Texture2D" uid="uid://dogvfnhihaueh" path="res://assets/textures/start_screen.png" id="1_jyhfs"]
 [ext_resource type="Texture2D" uid="uid://55v4ed8ceg3g" path="res://assets/textures/tileset.png" id="1_tefeu"]
@@ -12,7 +12,9 @@
 [ext_resource type="Script" uid="uid://cepwk8rw6husm" path="res://scripts/healthbar.gd" id="7_choun"]
 [ext_resource type="Shader" uid="uid://be3xbtvi7kqcf" path="res://shaders/fade.gdshader" id="7_o6xl0"]
 [ext_resource type="Script" uid="uid://bu0n0myhiis72" path="res://scripts/scorekeeper.gd" id="9_85g3d"]
+[ext_resource type="Texture2D" uid="uid://cfn22vc1rj5e8" path="res://assets/textures/healthbar.png" id="9_a8y0u"]
 [ext_resource type="AudioStream" uid="uid://bmcikdwos1she" path="res://assets/audio/music.ogg" id="12_eb6dy"]
+[ext_resource type="Texture2D" uid="uid://dqvbhkkfpvjys" path="res://assets/textures/button.png" id="13_jkv2x"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jyhfs"]
 texture = ExtResource("1_tefeu")
@@ -101,15 +103,61 @@ size = Vector2(20, 265)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jyhfs"]
 size = Vector2(387, 20)
 
+[sub_resource type="Theme" id="Theme_jbj1t"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jkv2x"]
+atlas = ExtResource("9_a8y0u")
+region = Rect2(0, 0, 300, 30)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jbj1t"]
+load_path = "res://.godot/imported/healthbar.png-dd46ba5b38d2ad5d2174ecb475189d37.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_muem4"]
+atlas = SubResource("CompressedTexture2D_jbj1t")
+region = Rect2(0, 60, 300, 30)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dp3eg"]
+load_path = "res://.godot/imported/healthbar.png-dd46ba5b38d2ad5d2174ecb475189d37.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ld40"]
+atlas = SubResource("CompressedTexture2D_dp3eg")
+region = Rect2(0, 30, 300, 30)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tbgi4"]
 shader = ExtResource("7_o6xl0")
 shader_parameter/threshhold = 1.0
 shader_parameter/multiplier = 384.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_dp3eg"]
+atlas = ExtResource("13_jkv2x")
+region = Rect2(0, 0, 852, 168)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0ld40"]
+load_path = "res://.godot/imported/button.png-8911a537b9d74946e57d12c653cdadda.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gqmmt"]
+atlas = SubResource("CompressedTexture2D_0ld40")
+region = Rect2(0, 336, 852, 168)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_yc10j"]
+load_path = "res://.godot/imported/button.png-8911a537b9d74946e57d12c653cdadda.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jscy8"]
+atlas = SubResource("CompressedTexture2D_yc10j")
+region = Rect2(0, 168, 852, 168)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tefeu"]
 shader = ExtResource("7_o6xl0")
 shader_parameter/threshhold = 0.0
 shader_parameter/multiplier = 384.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pm3ni"]
+atlas = SubResource("CompressedTexture2D_0ld40")
+region = Rect2(0, 336, 852, 168)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6deb"]
+atlas = SubResource("CompressedTexture2D_yc10j")
+region = Rect2(0, 168, 852, 168)
 
 [sub_resource type="Animation" id="Animation_jyhfs"]
 length = 0.001
@@ -437,6 +485,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_jbj1t")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control"]
 layout_mode = 1
@@ -445,16 +494,20 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 50
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Control/MarginContainer"]
+[node name="ProgressBar" type="TextureProgressBar" parent="CanvasLayer/Control/MarginContainer"]
+texture_filter = 1
 custom_minimum_size = Vector2(300, 30)
 layout_mode = 2
 size_flags_horizontal = 0
-show_percentage = false
+size_flags_vertical = 0
+texture_under = SubResource("AtlasTexture_jkv2x")
+texture_over = SubResource("AtlasTexture_muem4")
+texture_progress = SubResource("AtlasTexture_0ld40")
 script = ExtResource("7_choun")
 
 [node name="StartScreen" type="TextureRect" parent="CanvasLayer/Control"]
@@ -504,9 +557,14 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="Start" type="Button" parent="CanvasLayer/Control/StartScreen/MarginContainer/VBoxContainer/MarginContainer"]
+[node name="Start" type="TextureButton" parent="CanvasLayer/Control/StartScreen/MarginContainer/VBoxContainer/MarginContainer"]
 use_parent_material = true
+custom_minimum_size = Vector2(852, 168)
 layout_mode = 2
+focus_mode = 0
+texture_normal = SubResource("AtlasTexture_dp3eg")
+texture_pressed = SubResource("AtlasTexture_gqmmt")
+texture_hover = SubResource("AtlasTexture_jscy8")
 script = ExtResource("5_tbgi4")
 anim_name = "start"
 a = 4.05
@@ -574,11 +632,15 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="Retry" type="Button" parent="CanvasLayer/Control/LoseScreen/MarginContainer/VBoxContainer/MarginContainer"]
+[node name="Retry" type="TextureButton" parent="CanvasLayer/Control/LoseScreen/MarginContainer/VBoxContainer/MarginContainer"]
 use_parent_material = true
+custom_minimum_size = Vector2(852, 168)
 layout_mode = 2
 size_flags_vertical = 3
-text = "Again!"
+focus_mode = 0
+texture_normal = SubResource("AtlasTexture_dp3eg")
+texture_pressed = SubResource("AtlasTexture_pm3ni")
+texture_hover = SubResource("AtlasTexture_y6deb")
 script = ExtResource("5_tbgi4")
 anim_name = "retry"
 

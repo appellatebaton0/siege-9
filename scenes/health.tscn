@@ -88,3 +88,4 @@ process_material = SubResource("ParticleProcessMaterial_p278q")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="." to="AudioStreamPlayer2D" method="play"]
+[connection signal="finished" from="GPUParticles2D" to="." method="queue_free"]

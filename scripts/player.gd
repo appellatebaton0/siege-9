@@ -22,7 +22,8 @@ func reset() -> void:
 @onready var cam:Camera = get_tree().get_first_node_in_group("Camera")
 func damage(amnt := 1):
 	if i_time > 0.0: return 
-	damaged.emit()
+	
+	if health > 0: damaged.emit()
 	
 	cam.apply_shake()
 	health -= amnt
