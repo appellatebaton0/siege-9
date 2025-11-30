@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://3tvg472iunaq"]
+[gd_scene load_steps=14 format=3 uid="uid://3tvg472iunaq"]
 
 [ext_resource type="Script" uid="uid://d3dgsww8t3gn0" path="res://scripts/health.gd" id="1_2rad1"]
 [ext_resource type="Texture2D" uid="uid://b1d660qt58e3t" path="res://assets/textures/health.png" id="2_58c75"]
+[ext_resource type="AudioStream" uid="uid://cocnvxify7rgt" path="res://assets/audio/health.wav" id="3_58c75"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_but5r"]
 radius = 6.0827627
@@ -28,6 +29,36 @@ animations = [{
 "speed": 2.0
 }]
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_but5r"]
+random_pitch = 2.0
+streams_count = 1
+stream_0/stream = ExtResource("3_58c75")
+
+[sub_resource type="Gradient" id="Gradient_58c75"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.92156863, 0.33333334, 0.33333334, 0.654902)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_but5r"]
+gradient = SubResource("Gradient_58c75")
+width = 2
+height = 2
+
+[sub_resource type="Curve" id="Curve_r330t"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_hcdjo"]
+curve = SubResource("Curve_r330t")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_p278q"]
+particle_flag_disable_z = true
+emission_shape = 2
+emission_sphere_radius = 3.35
+radial_velocity_min = 24.999977
+radial_velocity_max = 29.999977
+gravity = Vector3(0, 0, 0)
+alpha_curve = SubResource("CurveTexture_hcdjo")
+
 [node name="Health" type="Area2D" groups=["Health"]]
 z_index = -1
 collision_layer = 16
@@ -40,6 +71,20 @@ shape = SubResource("CircleShape2D_but5r")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_p278q")
-frame_progress = 0.6770538
+frame_progress = 0.39195558
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_but5r")
+volume_db = 9.0
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 24
+texture = SubResource("GradientTexture2D_but5r")
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.9
+process_material = SubResource("ParticleProcessMaterial_p278q")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="." to="AudioStreamPlayer2D" method="play"]
