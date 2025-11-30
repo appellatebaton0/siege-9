@@ -29,6 +29,7 @@ Camera=""
 Sleds=""
 Player=""
 Animator=""
+SledSpawner=""
 
 [input]
 
