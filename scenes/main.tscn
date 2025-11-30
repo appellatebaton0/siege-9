@@ -1,5 +1,6 @@
-[gd_scene load_steps=26 format=4 uid="uid://cqw4kq2kcvxmh"]
+[gd_scene load_steps=27 format=4 uid="uid://cqw4kq2kcvxmh"]
 
+[ext_resource type="Texture2D" uid="uid://dogvfnhihaueh" path="res://assets/textures/start_screen.png" id="1_jyhfs"]
 [ext_resource type="Texture2D" uid="uid://55v4ed8ceg3g" path="res://assets/textures/tileset.png" id="1_tefeu"]
 [ext_resource type="Script" uid="uid://vgqiqi0jmilg" path="res://scripts/sled_spawner.gd" id="2_sugp2"]
 [ext_resource type="Script" uid="uid://uaiplua24ldp" path="res://scripts/player.gd" id="3_sugp2"]
@@ -304,7 +305,7 @@ shape = SubResource("RectangleShape2D_tbgi4")
 texture_filter = 1
 rotation = 1.5707964
 sprite_frames = SubResource("SpriteFrames_85g3d")
-frame_progress = 0.5497057
+frame_progress = 0.3508872
 
 [node name="END" type="Node" parent="Player"]
 script = ExtResource("5_tbgi4")
@@ -342,7 +343,6 @@ collision_mask = 7
 shape = SubResource("RectangleShape2D_jyhfs")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="Down" type="AudioStreamPlayer" parent="CanvasLayer"]
 
@@ -359,7 +359,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="StartScreen" type="Panel" parent="CanvasLayer/Control"]
+[node name="StartScreen" type="TextureRect" parent="CanvasLayer/Control"]
+texture_filter = 1
 material = SubResource("ShaderMaterial_tbgi4")
 layout_mode = 1
 anchors_preset = 15
@@ -367,6 +368,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("1_jyhfs")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/StartScreen"]
 use_parent_material = true
@@ -387,8 +389,9 @@ layout_mode = 2
 script = ExtResource("5_tbgi4")
 anim_name = "start"
 
-[node name="LoseScreen" type="Panel" parent="CanvasLayer/Control"]
+[node name="LoseScreen" type="TextureRect" parent="CanvasLayer/Control"]
 visible = false
+texture_filter = 1
 material = SubResource("ShaderMaterial_tefeu")
 layout_mode = 1
 anchors_preset = 15
@@ -396,6 +399,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("1_jyhfs")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/LoseScreen"]
 use_parent_material = true
