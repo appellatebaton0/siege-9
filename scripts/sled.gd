@@ -21,7 +21,7 @@ func _on_body_entered(body: Node2D) -> void:
 	else: speed = 0
 	
 	$Sprite2D.play("crash")
-	$Area2D.process_mode = Node.PROCESS_MODE_DISABLED
+	$Area2D.queue_free()
 	# Should happen aft. the animation finishes later
 	#, though collision should turn off for that.
 

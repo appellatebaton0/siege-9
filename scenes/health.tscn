@@ -29,6 +29,7 @@ animations = [{
 }]
 
 [node name="Health" type="Area2D" groups=["Health"]]
+z_index = -1
 collision_layer = 16
 collision_mask = 4
 script = ExtResource("1_2rad1")
@@ -39,6 +40,6 @@ shape = SubResource("CircleShape2D_but5r")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_p278q")
-frame_progress = 0.8576902
+frame_progress = 0.6770538
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
