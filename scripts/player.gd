@@ -10,6 +10,8 @@ signal died
 @onready var health = max_health
 var knockback:Vector2
 
+@onready var sprite := $Sprite
+
 @onready var sp = global_position
 func reset() -> void: 
 	health = max_health
@@ -26,6 +28,11 @@ func _physics_process(delta: float) -> void:
 	
 	velocity.x = move_toward(velocity.x, max_speed * direction.x, acceleration * delta)
 	velocity.y = move_toward(velocity.y, max_speed * direction.y, acceleration * delta)
+	
+	if direction:
+		sprite.play("moving")
+		look_at(position + direction)
+	else: sprite.play("default")
 	
 	velocity += knockback
 	knockback /= 1.2
