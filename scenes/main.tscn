@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=4 uid="uid://cqw4kq2kcvxmh"]
+[gd_scene load_steps=49 format=4 uid="uid://cqw4kq2kcvxmh"]
 
 [ext_resource type="Texture2D" uid="uid://dogvfnhihaueh" path="res://assets/textures/start_screen.png" id="1_jyhfs"]
 [ext_resource type="Texture2D" uid="uid://55v4ed8ceg3g" path="res://assets/textures/tileset.png" id="1_tefeu"]
@@ -13,6 +13,7 @@
 [ext_resource type="Shader" uid="uid://be3xbtvi7kqcf" path="res://shaders/fade.gdshader" id="7_o6xl0"]
 [ext_resource type="Script" uid="uid://bu0n0myhiis72" path="res://scripts/scorekeeper.gd" id="9_85g3d"]
 [ext_resource type="Texture2D" uid="uid://cfn22vc1rj5e8" path="res://assets/textures/healthbar.png" id="9_a8y0u"]
+[ext_resource type="FontFile" uid="uid://tlxegi6umj7k" path="res://assets/fonts/palatinolinotype_bold.ttf" id="9_jbj1t"]
 [ext_resource type="AudioStream" uid="uid://bmcikdwos1she" path="res://assets/audio/music.ogg" id="12_eb6dy"]
 [ext_resource type="Texture2D" uid="uid://dqvbhkkfpvjys" path="res://assets/textures/button.png" id="13_jkv2x"]
 
@@ -104,6 +105,7 @@ size = Vector2(20, 265)
 size = Vector2(387, 20)
 
 [sub_resource type="Theme" id="Theme_jbj1t"]
+Label/fonts/font = ExtResource("9_jbj1t")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jkv2x"]
 atlas = ExtResource("9_a8y0u")
@@ -543,7 +545,7 @@ size_flags_vertical = 3
 use_parent_material = true
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 86
+theme_override_font_sizes/font_size = 101
 text = "
 ONSLEIGHT"
 horizontal_alignment = 1
@@ -568,6 +570,19 @@ texture_hover = SubResource("AtlasTexture_jscy8")
 script = ExtResource("5_tbgi4")
 anim_name = "start"
 a = 4.05
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/StartScreen/MarginContainer/VBoxContainer/MarginContainer/Start"]
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 61
+text = "START"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="LoseScreen" type="TextureRect" parent="CanvasLayer/Control"]
 visible = false
@@ -608,7 +623,7 @@ size_flags_vertical = 3
 use_parent_material = true
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 76
+theme_override_font_sizes/font_size = 116
 text = "You Lost!"
 horizontal_alignment = 1
 vertical_alignment = 2
@@ -643,6 +658,19 @@ texture_pressed = SubResource("AtlasTexture_pm3ni")
 texture_hover = SubResource("AtlasTexture_y6deb")
 script = ExtResource("5_tbgi4")
 anim_name = "retry"
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/LoseScreen/MarginContainer/VBoxContainer/MarginContainer/Retry"]
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 61
+text = "AGAIN"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer" groups=["Animator"]]
 libraries = {

@@ -53,18 +53,6 @@ func get_random_row_position() -> Vector2:
 func spawn_new():
 	var new = options.pick_random().instantiate()
 	
-	var set_pos:Vector2
-	var sleds = get_tree().get_nodes_in_group("Sleds")
-	while true:
-		set_pos = get_random_row_position()
-		
-		var min_dist = 32
-		for sled in sleds: 
-			var dist = sled.global_position.distance_to(set_pos)
-			min_dist = min(min_dist, dist)
-		
-		if min_dist > 31: break
-	
 	add_child(new)
 	new.global_position = get_random_row_position()
 
